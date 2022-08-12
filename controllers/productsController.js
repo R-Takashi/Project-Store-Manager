@@ -29,7 +29,21 @@ const getById = async (req, res) => {
   }
 };
 
+const add = async (req, res) => {
+  const { name } = req.body;
+  
+  try {
+    const newProduct = await productsService.add(name);
+
+    return res.status(201).json(newProduct);
+  } catch (error) { 
+    // console.log(error);
+    return res.status(500).json(ERROR_MESSAGE);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
+  add,
 };

@@ -7,7 +7,7 @@ const getAll = async (req, res) => {
     const products = await productsService.getAll();
     return res.status(200).json(products);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).json(ERROR_MESSAGE);
   }
 };
@@ -24,7 +24,7 @@ const getById = async (req, res) => {
 
     return res.status(200).json(product);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).json(ERROR_MESSAGE);
   }
 };

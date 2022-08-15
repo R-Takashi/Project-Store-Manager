@@ -11,4 +11,6 @@ productsRoute.get('/:id', productsController.getById);
 
 productsRoute.post('/', isValid.validName, productsController.add);
 
+productsRoute.put('/:id', isValid.validName, productsController.update);
+
 module.exports = productsRoute;

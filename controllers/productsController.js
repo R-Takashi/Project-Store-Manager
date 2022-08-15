@@ -42,8 +42,27 @@ const add = async (req, res) => {
   }
 };
 
+const update = async (req, res) => { 
+  const { id } = req.params;
+  const { name } = req.body;
+
+  try {
+    const updatedProduct = await productsService.update(id, name);
+
+    if (updatedProduct.affectedRows === 0) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    return res.status(200).json({ id, name });
+  } catch (error) {
+    // console.log(error);
+    return res.status(500).json(ERROR_MESSAGE);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   add,
+  update,
 };

@@ -7,4 +7,8 @@ const salesRoute = Router();
 
 salesRoute.post('/', isValid.validSale, salesController.add);
 
+salesRoute.get('/', salesController.getAll);
+
+salesRoute.get('/:id', salesController.getById);
+
 module.exports = salesRoute;

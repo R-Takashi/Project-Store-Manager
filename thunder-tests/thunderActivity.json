@@ -66,10 +66,10 @@
     "containerId": "",
     "name": "localhost:3000/sales",
     "url": "localhost:3000/products/1",
-    "method": "PUT",
+    "method": "GET",
     "sortNum": 0,
     "created": "2022-08-12T23:50:56.359Z",
-    "modified": "2022-08-15T22:53:17.252Z",
+    "modified": "2022-08-16T15:51:10.207Z",
     "headers": [],
     "params": [],
     "body": {

@@ -60,9 +60,27 @@ const update = async (req, res) => {
   }
 };
 
+const remove = async (req, res) => { 
+  const { id } = req.params;
+
+  try {
+    const removedProduct = await productsService.remove(id);
+
+    if (removedProduct.affectedRows === 0) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    return res.status(204).end();
+  } catch (error) {
+    // console.log(error);
+    return res.status(500).json(ERROR_MESSAGE);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   add,
   update,
+  remove,
 };

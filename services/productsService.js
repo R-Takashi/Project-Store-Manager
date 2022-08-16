@@ -17,12 +17,18 @@ const add = async (name) => {
 
 const update = async (id, name) => { 
   const updatedProduct = await productsModel.update(id, name);
-  return updatedProduct;
+  if (updatedProduct.affectedRows === 0) {
+    return { message: 'Product not found' };
+  }
+  return { id, name };
 };
 
 const remove = async (id) => { 
   const removedProduct = await productsModel.remove(id);
-  return removedProduct;
+  if (removedProduct.affectedRows === 0) {
+    return { message: 'Product not found' };
+  }
+  return true;
 };
 
 const search = async (q) => { 

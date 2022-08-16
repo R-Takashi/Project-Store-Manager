@@ -245,7 +245,7 @@ describe("Test productsModels", () => {
       });
 
       it("O array esteja vazio", async function () {
-        const result = await productsModel.getById("Produto Teste");
+        const result = await productsModel.search("Produto Teste");
         expect(result).to.be.empty;
       });
     });

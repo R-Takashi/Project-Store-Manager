@@ -49,11 +49,11 @@ const update = async (req, res) => {
   try {
     const updatedProduct = await productsService.update(id, name);
 
-    if (updatedProduct.affectedRows === 0) {
-      return res.status(404).json({ message: 'Product not found' });
+    if (updatedProduct.message) {
+      return res.status(404).json(updatedProduct);
     }
 
-    return res.status(200).json({ id, name });
+    return res.status(200).json(updatedProduct);
   } catch (error) {
     // console.log(error);
     return res.status(500).json(ERROR_MESSAGE);
@@ -66,8 +66,8 @@ const remove = async (req, res) => {
   try {
     const removedProduct = await productsService.remove(id);
 
-    if (removedProduct.affectedRows === 0) {
-      return res.status(404).json({ message: 'Product not found' });
+    if (removedProduct.message) {
+      return res.status(404).json(removedProduct);
     }
 
     return res.status(204).end();

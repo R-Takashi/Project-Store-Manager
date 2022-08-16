@@ -40,9 +40,33 @@ const remove = async (id) => {
   return removedSale;
 };
 
+const update = async (id, sale) => {
+  const validSale = await salesModel.getById(id);
+  const productsList = await productsModel.getAll();
+  
+  if (validSale.length === 0) {
+    return { message: 'Sale not found' };
+  }
+
+  const allValids = sale.every((item) =>
+    productsList.some((product) => product.id === item.productId));
+
+  if (allValids === false) {
+    return { message: 'Product not found' };
+  }
+
+  await salesModel.update(id, sale);
+
+  return {
+    saleId: id,
+    itemsUpdated: sale,
+  };
+};
+
 module.exports = {
   add,
   getAll,
   getById,
   remove,
+  update,
 };

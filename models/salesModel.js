@@ -59,9 +59,23 @@ const remove = async (id) => {
   return sale;
 };
 
+const update = async (id, sale) => {
+  await sale.forEach(async (product) => {
+    await connection.execute(
+      `UPDATE StoreManager.sales_products 
+      SET product_id = ?, 
+          quantity = ?
+      WHERE sale_id = ?
+      AND product_id = ?`,
+      [product.productId, product.quantity, id, product.productId],
+    );
+  });
+};
+
 module.exports = {
   addNewSale,
   getAll,
   getById,
   remove,
+  update,
 };

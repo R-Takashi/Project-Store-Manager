@@ -65,19 +65,18 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/sales",
-    "url": "localhost:3000/products/search?q=Martelo",
-    "method": "GET",
+    "url": "localhost:3000/products/1",
+    "method": "PUT",
     "sortNum": 0,
     "created": "2022-08-12T23:50:56.359Z",
-    "modified": "2022-08-16T18:24:53.741Z",
+    "modified": "2022-08-16T18:46:22.971Z",
     "headers": [],
-    "params": [
-      {
-        "name": "q",
-        "value": "Martelo",
-        "isPath": false
-      }
-    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "  {\n    \"name\": \"Martelo do Batman\"\n  }",
+      "form": []
+    },
     "tests": []
   }
 ]

@@ -11,4 +11,6 @@ salesRoute.get('/', salesController.getAll);
 
 salesRoute.get('/:id', salesController.getById);
 
+salesRoute.delete('/:id', salesController.remove);
+
 module.exports = salesRoute;

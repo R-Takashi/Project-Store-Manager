@@ -47,8 +47,26 @@ const getById = async (req, res) => {
   }
 };
 
+const remove = async (req, res) => { 
+  const { id } = req.params;
+
+  try {
+    const sale = await salesService.remove(id);
+
+    if (sale.affectedRows === 0) {
+      return res.status(404).json({ message: 'Sale not found' });
+    }
+
+    return res.status(204).end();
+  } catch (error) {
+    // console.log(error);
+    return res.status(500).json(ERROR_MESSAGE);
+  }
+};
+
 module.exports = {
   add,
   getAll,
   getById,
+  remove,
 };

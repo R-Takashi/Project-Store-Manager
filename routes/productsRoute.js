@@ -5,6 +5,8 @@ const isValid = require('../middlewares/isValidProduct');
 
 const productsRoute = Router();
 
+productsRoute.get('/search', productsController.search);
+
 productsRoute.get('/', productsController.getAll);
 
 productsRoute.get('/:id', productsController.getById);

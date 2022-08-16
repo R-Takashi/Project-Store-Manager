@@ -77,10 +77,24 @@ const remove = async (req, res) => {
   }
 };
 
+const search = async (req, res) => { 
+  const { q } = req.query;
+
+  try {
+    const products = await productsService.search(q);
+
+    return res.status(200).json(products);
+  } catch (error) {
+    // console.log(error);
+    return res.status(500).json(ERROR_MESSAGE);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   add,
   update,
   remove,
+  search,
 };

@@ -20,7 +20,6 @@ const add = async (name) => {
     'INSERT INTO StoreManager.products (name) VALUES (?)',
     [name],
   );
-  console.log(product);
   return { id: product.insertId, name };
 };
 
@@ -40,10 +39,19 @@ const remove = async (id) => {
   return product;
 };
 
+const search = async (q) => { 
+  const [products] = await connection.execute(
+    'SELECT * FROM StoreManager.products WHERE name LIKE ?',
+    [`%${q}%`],
+  );
+  return products;
+};
+
 module.exports = {
   getAll,
   getById,
   add,
   update,
   remove,
+  search,
 };

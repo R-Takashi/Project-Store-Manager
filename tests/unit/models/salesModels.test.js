@@ -13,13 +13,16 @@ describe("Test salesModels", () => {
         const resultExecute = [[], []];
         sinon.stub(connection, "execute").resolves(resultExecute);
       });
+
       after(function () {
         connection.execute.restore();
       });
+
       it("Retorna um array", async function () {
         const result = await salesModel.getAll();
         expect(result).to.be.an("array");
       });
+
       it("O array esteja vazio", async function () {
         const result = await salesModel.getAll();
         expect(result).to.be.empty;
@@ -46,21 +49,26 @@ describe("Test salesModels", () => {
         const resultExecute = [[...sale], []];
         sinon.stub(connection, "execute").resolves(resultExecute);
       });
+
       after(function () {
         connection.execute.restore();
       });
+
       it("Retorna um array", async function () {
         const result = await salesModel.getAll();
         expect(result).to.be.an("array");
       });
+
       it("O array contém itens", async function () {
         const result = await salesModel.getAll();
         expect(result).to.be.not.empty;
       });
+
       it("O array contém itens do tipo objeto", async function () {
         const result = await salesModel.getAll();
         expect(result[0]).to.be.an("object");
       });
+
       it('Os objetos tenham as propriedades: "saleId", "date", "productId" e "quantity"', async function () {
         const result = await salesModel.getAll();
         expect(result[0]).to.include.all.keys("saleId", "date", "productId", "quantity");
@@ -74,13 +82,16 @@ describe("Test salesModels", () => {
         const resultExecute = [[], []];
         sinon.stub(connection, "execute").resolves(resultExecute);
       });
+
       after(function () {
         connection.execute.restore();
       });
+
       it("Retorna um array", async function () {
         const result = await salesModel.getById(1);
         expect(result).to.be.an("array");
       });
+
       it("O array esteja vazio", async function () {
         const result = await salesModel.getById(1);
         expect(result).to.be.empty;
@@ -95,25 +106,31 @@ describe("Test salesModels", () => {
           "quantity": 2
         }
       ];
+
       before(function () {
         const resultExecute = [[...sale], []];
         sinon.stub(connection, "execute").resolves(resultExecute);
       });
+
       after(function () {
         connection.execute.restore();
       });
+
       it("Retorna um array", async function () {
         const result = await salesModel.getById(1);
         expect(result).to.be.an("array");
       });
+
       it("O array contém itens", async function () {
         const result = await salesModel.getById(1);
         expect(result).to.be.not.empty;
       });
+
       it("O array contém itens do tipo objeto", async function () {
         const result = await salesModel.getById(1);
         expect(result[0]).to.be.an("object");
       });
+      
       it('Os objetos tenham as propriedades: "saleId", "date", "productId" e "quantity"', async function () {
         const result = await salesModel.getById(1);
         expect(result[0]).to.include.all.keys("saleId", "date", "productId", "quantity");

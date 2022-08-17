@@ -5,7 +5,7 @@ const mocks = require("../../../__tests__/_dataMock");
 const productsService = require("../../../services/productsService");
 const productsModel = require("../../../models/productsModel");
 
-describe("Test productsService - Requisito 2", () => {
+describe("Test productsService ", () => {
 
   describe("Retorna todos os produtos", () => {
     describe("Caso não existirem", () => {

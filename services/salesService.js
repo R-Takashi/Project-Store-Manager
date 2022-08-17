@@ -37,7 +37,11 @@ const getById = async (id) => {
 
 const remove = async (id) => { 
   const removedSale = await salesModel.remove(id);
-  return removedSale;
+  if (removedSale.affectedRows === 0) { 
+    return { message: 'Sale not found' };
+  }
+
+  return 'removed';
 };
 
 const update = async (id, sale) => {

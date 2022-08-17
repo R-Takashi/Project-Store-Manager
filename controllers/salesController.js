@@ -53,8 +53,8 @@ const remove = async (req, res) => {
   try {
     const sale = await salesService.remove(id);
 
-    if (sale.affectedRows === 0) {
-      return res.status(404).json({ message: 'Sale not found' });
+    if (sale.message) {
+      return res.status(404).json(sale);
     }
 
     return res.status(204).end();

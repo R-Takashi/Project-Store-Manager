@@ -42,11 +42,12 @@ const remove = async (id) => {
 
 const update = async (id, sale) => {
   const validSale = await salesModel.getById(id);
-  const productsList = await productsModel.getAll();
   
   if (validSale.length === 0) {
     return { message: 'Sale not found' };
   }
+
+  const productsList = await productsModel.getAll();
 
   const allValids = sale.every((item) =>
     productsList.some((product) => product.id === item.productId));

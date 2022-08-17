@@ -74,7 +74,7 @@ const update = async (req, res) => {
     if (updatedSale.message) {
       return res.status(404).json(updatedSale);
     }
-
+    
     return res.status(200).json(updatedSale);
   } catch (error) {
     // console.log(error);

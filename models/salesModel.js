@@ -60,16 +60,23 @@ const remove = async (id) => {
 };
 
 const update = async (id, sale) => {
-  await sale.forEach(async (product) => {
-    await connection.execute(
-      `UPDATE StoreManager.sales_products 
-      SET product_id = ?, 
-          quantity = ?
-      WHERE sale_id = ?
-      AND product_id = ?`,
-      [product.productId, product.quantity, id, product.productId],
-    );
-  });
+  const updateRows = await Promise.all(
+    sale.map(async (product) => {
+      const [row] = await connection.execute(
+        `UPDATE StoreManager.sales_products 
+        SET product_id = ?, 
+            quantity = ?
+        WHERE sale_id = ?
+        AND product_id = ?`,
+        [product.productId, product.quantity, id, product.productId],
+      );
+      return row.affectedRows;
+    }),
+  );
+  
+  const updateSucessTest = updateRows.every((row) => row === 1);
+
+  return updateSucessTest;
 };
 
 module.exports = {

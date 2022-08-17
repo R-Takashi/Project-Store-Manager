@@ -68,7 +68,7 @@ describe("Test salesModels", () => {
     });
   });
   
-  describe("Retorna uma venda por id", () => {
+  describe("Retorna uma venda pelo id na rota /sales/:id", () => {
     describe("Caso não existir", () => {
       before(function () {
         const resultExecute = [[], []];
@@ -121,7 +121,7 @@ describe("Test salesModels", () => {
     });
   });
 
-  describe("Adiciona uma venda", () => { 
+  describe("Adiciona uma venda pela rota /sales", () => {
     before(function () {
       const resultExecute = [{ insertId: 4 }, []];
       sinon.stub(connection, "execute").resolves(resultExecute);
@@ -137,7 +137,7 @@ describe("Test salesModels", () => {
     });
   });
 
-  describe("Remove o produto corretamente na rota /product/:id", () => {
+  describe("Remove uma venda na rota /sales/:id", () => {
     describe("Caso não existir", () => {
       before(function () {
         const resultExecute = [{ affectedRows: 0 }, []];
@@ -181,20 +181,20 @@ describe("Test salesModels", () => {
     });
   });
 
-  // describe("Atualiza uma venda", () => {
-  //   before(function () {
-  //     const resultExecute = [[], []];
-  //     sinon.stub(connection, "execute").resolves(resultExecute);
-  //   });
+  describe("Atualiza uma venda na rota /sales/:id", () => {
+    before(function () {
+      const resultExecute = [{ affectedRows: 1 }, []];
+      sinon.stub(connection, "execute").resolves(resultExecute);
+    });
 
-  //   after(function () {
-  //     connection.execute.restore();
-  //   });
+    after(function () {
+      connection.execute.restore();
+    });
 
-  //   it('Chama a função', async function () {
-  //     await salesModel.update(1, mocks.rightSaleBody);
-  //     expect(salesModel.update).to.called(1, mocks.rightSaleBody);
-  //     // expect(connection.execute).to.be.calledOnce;
-  //   });
-  // });
+    it("Atualiza todos os campos", async function () {
+      const result = await salesModel.update(1, mocks.rightSaleBody);
+
+      expect(result).to.be.equal(true);
+    }).timeout(5000);
+  });
 });

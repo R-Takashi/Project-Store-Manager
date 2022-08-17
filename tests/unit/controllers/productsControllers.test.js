@@ -5,7 +5,7 @@ const productsController = require("../../../controllers/productsController");
 const productsService = require("../../../services/productsService");
 
 
-describe("Test productsControllers - Requisito 2", () => {
+describe("Test productsControllers ", () => {
 
   describe("Retorna todos os produtos", () => {
     describe("Caso não existirem", () => {
@@ -149,7 +149,7 @@ describe("Test productsControllers - Requisito 2", () => {
       productsService.add.restore();
     });
 
-    it("Retorna o status 200", async function () {
+    it("Retorna o status 201", async function () {
       await productsController.add(request, response);
       expect(response.status.calledWith(201)).to.be.equal(true);
     });

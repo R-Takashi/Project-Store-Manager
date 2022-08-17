@@ -6,7 +6,7 @@ const salesService = require("../../../services/salesService");
 const salesModel = require("../../../models/salesModel");
 const productsModel = require("../../../models/productsModel");
 
-describe("Test salesModels", () => {
+describe("Test salesServices", () => {
   describe("Retorna todas as vendas", () => {
     describe("Caso não existirem", () => {
       before(function () {
